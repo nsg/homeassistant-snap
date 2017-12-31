@@ -1,4 +1,5 @@
 # homeassistant-nsg
+[![Snap Status](https://build.snapcraft.io/badge/nsg/homeassistant-snap.svg)](https://build.snapcraft.io/user/nsg/homeassistant-snap)
 
 A snap packaging [Home Assistant](https://home-assistant.io). Home Assistant is an open-source home automation platform running on Python 3. Track and control all devices at home and automate control.
 
