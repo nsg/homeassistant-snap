@@ -1,0 +1,32 @@
+---
+
+name: homeassistant-nsg
+version: master
+summary: Home Assistant is an open-source home automation platform
+description: |
+  Home Assistant is an open-source home automation platform running
+  on Python 3. Track and control all devices at home and automate
+  control.
+
+grade: devel
+confinement: strict
+
+apps:
+  homeassistant-nsg:
+    command: hass -c $SNAP_DATA
+    plugs: [network, network-bind]
+
+parts:
+  homeassistant:
+    plugin: python
+    python-version: python3
+    source: https://github.com/home-assistant/home-assistant.git
+    requirements: requirements_all.txt
+    build-packages:
+      - libffi-dev
+      - libjpeg8-dev
+      - libssl-dev
+      - libudev-dev
+      - libxml2-dev
+      - libxslt1-dev
+      - zlib1g-dev
