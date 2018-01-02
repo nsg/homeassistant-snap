@@ -13,8 +13,45 @@ Feel free to open an issue, or create a pull request if you like to contribute.
 
 ## Install
 
-The latest stable is the version I'm using, and it works for me. To install it type `snap install homeassistant-nsg`.
+My home system follows the edge channel (`snap install --edge homeassistant-nsg`). If a
+build works for me, I will publish it to stable.
 
-The latest untested build directly from upstream rests in the edge channel, to try it type `snap install --edge homeassistant-nsg`.
+## Tellstick
 
-To move between channels on an existing install, type `snap refresh --edge homeassistant-nsg` and so on.
+I have a TellStick Duo running on a secondary host, that shares a private network with
+the container running this snap. I expose the sockets at `/tmp/Telldus{Client,Events}`
+over the network with these unit-files:
+
+```
+[Unit]
+Description=Expose Teldus dockerts over TCP
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/socat TCP-LISTEN:50801,reuseaddr,fork,bind=192.168.40.2 UNIX-CONNECT:/tmp/TelldusEvents
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+[Unit]
+Description=Expose Teldus dockerts over TCP
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/socat TCP-LISTEN:50800,reuseaddr,fork,bind=192.168.40.2 UNIX-CONNECT:/tmp/TelldusClient
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+The Home Assistant configuration is then:
+
+```
+tellstick:
+  host: 192.168.40.2
+  port: [50800, 50801]
+```
