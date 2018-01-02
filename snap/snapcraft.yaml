@@ -8,7 +8,7 @@ description: |
   on Python 3. Track and control all devices at home and automate
   control.
 
-grade: devel
+grade: stable
 confinement: strict
 
 apps:
