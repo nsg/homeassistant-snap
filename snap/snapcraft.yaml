@@ -33,6 +33,8 @@ parts:
       - libxml2-dev
       - libxslt1-dev
       - zlib1g-dev
+    stage-packages:
+      - socat
     stage:
       - bin
       - etc
