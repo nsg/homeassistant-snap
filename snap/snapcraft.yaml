@@ -1,7 +1,7 @@
 ---
 
 name: homeassistant-nsg
-version: master
+version: "0.60"
 summary: Home Assistant is an open-source home automation platform
 description: |
   Home Assistant is an open-source home automation platform running
@@ -23,6 +23,7 @@ parts:
     plugin: python
     python-version: python3
     source: https://github.com/home-assistant/home-assistant.git
+    source-tag: "0.60"
     requirements: requirements_all.txt
     build-packages:
       - libffi-dev
