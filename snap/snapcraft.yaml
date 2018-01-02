@@ -13,7 +13,7 @@ confinement: strict
 
 apps:
   homeassistant-nsg:
-    command: hass -c $SNAP_DATA
+    command: bin/launcher
     daemon: simple
     restart-condition: always
     plugs: [network, network-bind]
@@ -37,3 +37,8 @@ parts:
       - etc
       - lib
       - usr
+  wrapper:
+    plugin: dump
+    source: src
+    organize:
+      launcher.sh: bin/launcher
