@@ -33,8 +33,6 @@ parts:
       - libxml2-dev
       - libxslt1-dev
       - zlib1g-dev
-    stage-packages:
-      - socat
     stage:
       - bin
       - etc
@@ -45,3 +43,20 @@ parts:
     source: src
     organize:
       launcher.sh: bin/launcher
+  telldus:
+    plugin: cmake
+    source: https://github.com/telldus/telldus.git
+    source-commit: cc326285c5d9e5d35ef50c97ddab57539e602594
+    build: |
+      cd telldus-core
+      cmake . \
+        -DBUILD_LIBTELLDUS-CORE=ON \
+        -DBUILD_TDADMIN=OFF \
+        -DBUILD_TDTOOL=OFF \
+        -DGENERATE_MAN=OFF \
+        -DFORCE_COMPILE_FROM_TRUNK=ON
+      make
+    build-packages:
+      - libftdi-dev
+    stage-packages:
+      - socat
