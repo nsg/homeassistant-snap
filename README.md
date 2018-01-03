@@ -24,7 +24,7 @@ over the network with these unit-files:
 
 ```
 [Unit]
-Description=Expose Teldus dockerts over TCP
+Description=Expose Telldus sockets over TCP
 After=network.target
 
 [Service]
@@ -37,7 +37,7 @@ WantedBy=multi-user.target
 
 ```
 [Unit]
-Description=Expose Teldus dockerts over TCP
+Description=Expose Telldus sockets over TCP
 After=network.target
 
 [Service]
